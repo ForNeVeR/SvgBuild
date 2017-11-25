@@ -30,6 +30,13 @@ Run
 $ dotnet run --project SvgBuild.Console [path to input file] [path to output file]
 ```
 
+Test
+----
+
+```console
+$ dotnet test SvgBuild.Tests
+```
+
 [build-appveyor]: https://ci.appveyor.com/project/ForNeVeR/svgbuild/branch/master
 [build-travis]: https://travis-ci.org/ForNeVeR/SvgBuild
 [dotnet-sdk-335]: https://github.com/dotnet/sdk/issues/335

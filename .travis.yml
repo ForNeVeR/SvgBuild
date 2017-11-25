@@ -10,3 +10,4 @@ dotnet: 2.0.0
 mono: 5.2.0
 script:
     - dotnet build
+    - dotnet test SvgBuild.Tests
