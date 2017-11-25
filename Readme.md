@@ -2,7 +2,7 @@ SvgBuild [![Appveyor Build][badge-appveyor]][build-appveyor] [![Travis Build][ba
 ========
 
 This is a .NET based tool set to save SVG to raster images. Includes a
-terminal-based program.
+terminal-based program and a MSBuild task.
 
 Build
 -----
@@ -19,8 +19,8 @@ $ msbuild /p:Configuration=Release SvgBuild.sln
 It will create the `SvgBuild.Console/bin/Release/SvgBuild.Console.exe` binary
 file.
 
-Run
----
+Run (Terminal)
+--------------
 
 On Windows:
 
@@ -32,6 +32,27 @@ On other operating systems:
 
 ```console
 $ mono SvgBuild.Console <path to the input file> <path to the output file>
+```
+
+Run (MSBuild)
+-------------
+
+Install `SvgBuild.MsBuild` package into your project. Your NuGet client should
+automatically generate the following in your project file:
+
+```xml
+<Import Project="..\packages\SvgBuild.MsBuild.0.0.1\build\SvgBuild.MsBuild.props"
+        Condition="Exists('..\packages\SvgBuild.MsBuild.0.0.1\build\SvgBuild.MsBuild.props')" />
+```
+
+After that, you're able to run SVG processing tasks e.g. in the `AfterBuild`
+target:
+
+```xml
+<Target Name="SvgBuildTasks" AfterTargets="AfterBuild">
+  <SvgBuildTask InputPath="$(ProjectDir)..\SvgBuild.Tests\Resources\Image.svg"
+                OutputPath="$(OutDir)Test.bmp" />
+</Target>
 ```
 
 Test
