@@ -14,12 +14,10 @@
     <copyright>Copyright (C) 2017 F. von Never</copyright>
     <tags>SVG MSBuild</tags>
     <developmentDependency>true</developmentDependency>
-    <dependencies>
-      <dependency id="Svg" version="2.3.0"/>
-    </dependencies>
   </metadata>
   <files>
     <file src="*.props" target="build"/>
+    <file src="bin\$configuration$\Svg.*" target="tools"/>
     <file src="bin\$configuration$\SvgBuild.???" target="tools"/>
     <file src="bin\$configuration$\SvgBuild.MsBuild.pdb" target="tools"/>
   </files>
