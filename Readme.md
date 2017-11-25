@@ -1,4 +1,4 @@
-SvgBuild
+SvgBuild [![Appveyor Build][badge-appveyor]][build-appveyor] [![Travis Build][badge-travis]][build-travis]
 ========
 
 This is a .NET based tool set to save SVG to raster images. Includes a
@@ -30,6 +30,11 @@ Run
 $ dotnet run --project SvgBuild.Console [path to input file] [path to output file]
 ```
 
+[build-appveyor]: https://ci.appveyor.com/project/ForNeVeR/svgbuild/branch/master
+[build-travis]: https://travis-ci.org/ForNeVeR/SvgBuild
 [dotnet-sdk-335]: https://github.com/dotnet/sdk/issues/335
 [framework-path-override]: https://github.com/dotnet/sdk/issues/335#issuecomment-322137207
 [net-sdk]: https://www.microsoft.com/net/download
+
+[badge-appveyor]: https://ci.appveyor.com/api/projects/status/mwpd81tb2nwku1k6/branch/master?svg=true
+[badge-travis]: https://travis-ci.org/ForNeVeR/SvgBuild.svg?branch=master
