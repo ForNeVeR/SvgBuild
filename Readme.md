@@ -12,6 +12,7 @@ Studio][visual-studio] distribution on Windows or [Mono][mono] on other
 operation systems). To build the program, run the following script:
 
 ```console
+$ nuget restore
 $ msbuild /p:Configuration=Release SvgBuild.sln
 ```
 
