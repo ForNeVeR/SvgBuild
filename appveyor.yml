@@ -6,12 +6,14 @@ before_build:
     - nuget restore
 after_build:
     - packages\xunit.runner.console.2.3.1\tools\net452\xunit.console.exe SvgBuild.Tests\bin\Release\SvgBuild.Tests.dll
-    # Integration tests:
-    - dir SvgBuild.MsBuild\bin\Release
-    - nuget pack SvgBuild.MsBuild\SvgBuild.MsBuild.csproj -Tool -Prop Platform=AnyCPU -prop Configuration=Release
+    # Integration testing.
+    # Pack the package:
+    - nuget pack SvgBuild.MsBuild\SvgBuild.MsBuild.csproj -Tool -Prop Platform=AnyCPU -Prop Configuration=Release
+    # Install the package:
     - cd SvgBuild.MsBuild.IntegrationTest
     - mkdir NuGetRepository
     - nuget add ..\SvgBuild.MsBuild.0.0.1.nupkg -Source NuGetRepository
     - nuget restore -Source %cd%\NuGetRepository -PackagesDirectory packages
+    # Check if the build works now:
     - msbuild /p:Platform=AnyCPU /p:Configuration=Release
     - if not exist bin\Release\Test.bmp exit 1

@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>SvgBuild.MsBuild</id>
-    <version>$version$</version>
+    <version>0.0.1</version>
     <title>SvgBuild MSBuild Task</title>
     <authors>Friedrich von Never</authors>
     <owners>fornever</owners>
