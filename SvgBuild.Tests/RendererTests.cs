@@ -19,26 +19,12 @@ namespace SvgBuild.Tests
         [Fact]
         public async Task RendererRendersSimpleImage()
         {
-            var path = await CreateTempImage();
+            var path = await SvgUtilities.CreateTempImage();
             var output = Path.GetTempFileName();
             Renderer.Render(path, output);
 
             var image = Image.FromFile(output);
             Assert.IsType<Bitmap>(image);
-        }
-
-        private static async Task<string> CreateTempImage()
-        {
-            var fileName = Path.GetTempFileName();
-            using (var file = new FileStream(fileName, FileMode.Create))
-            using (var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(
-                "SvgBuild.Tests.Resources.Image.svg"))
-            {
-                Assert.NotNull(stream);
-                await stream.CopyToAsync(file);
-            }
-
-            return fileName;
         }
     }
 }

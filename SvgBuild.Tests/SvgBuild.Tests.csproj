@@ -35,6 +35,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Build.Utilities.v4.0" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
@@ -66,8 +67,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MsBuildTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RendererTests.cs" />
+    <Compile Include="SvgUtilities.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\Image.svg" />
@@ -76,6 +79,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SvgBuild.MsBuild\SvgBuild.MsBuild.csproj">
+      <Project>{A5082FDD-8A74-4E24-AD1E-F489D958993A}</Project>
+      <Name>SvgBuild.MsBuild</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SvgBuild\SvgBuild.csproj">
       <Project>{55124e18-f228-49a7-9560-a85e36a27ee2}</Project>
       <Name>SvgBuild</Name>
