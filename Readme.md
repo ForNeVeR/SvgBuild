@@ -56,7 +56,7 @@ To pack the project before uploading it to NuGet, use the following command:
 
 ```console
 $ msbuild /p:Configuration=Release SvgBuild.sln
-$ nuget pack SvgBuild.MsBuild/SvgBuild.MsBuild.csproj -tool -prop Configuration=Release
+$ nuget pack SvgBuild.MsBuild/SvgBuild.MsBuild.csproj -Tool  -Prop Platform=AnyCPU -Prop Configuration=Release
 ```
 
 [build-appveyor]: https://ci.appveyor.com/project/ForNeVeR/svgbuild/branch/master
