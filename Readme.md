@@ -7,41 +7,52 @@ terminal-based program.
 Build
 -----
 
-This program requires [.NET Core SDK 2.0][net-sdk] to build it.
+This program uses [MSBuild][msbuild] (included in [Visual
+Studio][visual-studio] distribution on Windows or [Mono][mono] on other
+operation systems). To build the program, run the following script:
 
 ```console
-$ dotnet build
+$ msbuild /p:Configuration=Release SvgBuild.sln
 ```
 
-On Linux, remember that there's [a bug](dotnet-sdk-335) building projects
-targeting .NET Framework using .NET Core SDK, so remember to set the
-`FrameworkPathOverride` environment variable properly, e.g.
-
-```console
-$ export FrameworkPathOverride=/usr/lib/mono/4.6.1-api
-```
-
-After that, build the project as usual.
+It will create the `SvgBuild.Console/bin/Release/SvgBuild.Console.exe` binary
+file.
 
 Run
 ---
 
+On Windows:
+
 ```console
-$ dotnet run --project SvgBuild.Console [path to input file] [path to output file]
+$ SvgBuild.Console <path to the input file> <path to the output file>
+```
+
+On other operating systems:
+
+```console
+$ mono SvgBuild.Console <path to the input file> <path to the output file>
 ```
 
 Test
 ----
 
+On Windows:
+
 ```console
-$ dotnet test SvgBuild.Tests
+$ packages\xunit.runner.console.2.3.1\tools\net452\xunit.console.exe SvgBuild.Tests\bin\Release\SvgBuild.Tests.dll
+```
+
+On other operating systems:
+
+```console
+$ mono packages/xunit.runner.console.2.3.1/tools/net452/xunit.console.exe SvgBuild.Tests/bin/Release/SvgBuild.Tests.dll
 ```
 
 [build-appveyor]: https://ci.appveyor.com/project/ForNeVeR/svgbuild/branch/master
 [build-travis]: https://travis-ci.org/ForNeVeR/SvgBuild
-[dotnet-sdk-335]: https://github.com/dotnet/sdk/issues/335
-[framework-path-override]: https://github.com/dotnet/sdk/issues/335#issuecomment-322137207
-[net-sdk]: https://www.microsoft.com/net/download
+[mono]: http://www.mono-project.com/
+[msbuild]: https://github.com/Microsoft/msbuild
+[visual-studio]: https://www.visualstudio.com/
 
 [badge-appveyor]: https://ci.appveyor.com/api/projects/status/mwpd81tb2nwku1k6/branch/master?svg=true
 [badge-travis]: https://travis-ci.org/ForNeVeR/SvgBuild.svg?branch=master

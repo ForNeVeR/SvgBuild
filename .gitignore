@@ -1,4 +1,5 @@
 /.idea/
+/packages/
 
 bin/
 obj/
