@@ -49,6 +49,16 @@ On other operating systems:
 $ mono packages/xunit.runner.console.2.3.1/tools/net452/xunit.console.exe SvgBuild.Tests/bin/Release/SvgBuild.Tests.dll
 ```
 
+Pack
+----
+
+To pack the project before uploading it to NuGet, use the following command:
+
+```console
+$ msbuild /p:Configuration=Release SvgBuild.sln
+$ nuget pack SvgBuild.MsBuild/SvgBuild.MsBuild.csproj -tool -prop Configuration=Release
+```
+
 [build-appveyor]: https://ci.appveyor.com/project/ForNeVeR/svgbuild/branch/master
 [build-travis]: https://travis-ci.org/ForNeVeR/SvgBuild
 [mono]: http://www.mono-project.com/
