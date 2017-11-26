@@ -33,9 +33,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="IconLib, Version=0.73.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\packages\IconLib.Unofficial.0.73.0\lib\net20\IconLib.dll</HintPath>
-    </Reference>
     <Reference Include="Svg, Version=2.2.1.39233, Culture=neutral, PublicKeyToken=12a0bac221edeae2">
       <HintPath>..\packages\Svg.2.3.0\lib\net35\Svg.dll</HintPath>
     </Reference>
@@ -47,7 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IImageSaver.cs" />
-    <Compile Include="Savers\IconLibSaver.cs" />
+    <Compile Include="Savers\IconSaver.cs" />
     <Compile Include="Savers\SystemDrawingSaver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Renderer.cs" />

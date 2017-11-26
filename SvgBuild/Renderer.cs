@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Drawing;
-using System.Drawing.IconLib;
 using System.Drawing.Imaging;
 using System.IO;
 using Svg;
@@ -62,7 +60,7 @@ namespace SvgBuild
         {
             if (Equals(format, ImageFormat.Icon))
             {
-                return new IconLibSaver();
+                return new IconSaver();
             }
 
             return new SystemDrawingSaver();
