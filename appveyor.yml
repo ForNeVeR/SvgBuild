@@ -17,3 +17,4 @@ after_build:
     # Check if the build works now:
     - msbuild /p:Platform=AnyCPU /p:Configuration=Release
     - if not exist bin\Release\Test.bmp exit 1
+    - if not exist bin\Release\Test.ico exit 1

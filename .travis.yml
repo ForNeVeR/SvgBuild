@@ -21,3 +21,4 @@ script:
     # Check if the build works now:
     - msbuild /p:Platform=AnyCPU /p:Configuration=Release
     - '[ -e bin/Release/Test.bmp ] || exit 1'
+    - '[ -e bin/Release/Test.ico ] || exit 1'

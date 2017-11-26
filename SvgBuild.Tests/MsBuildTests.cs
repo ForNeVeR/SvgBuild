@@ -12,7 +12,7 @@ namespace SvgBuild.Tests
         public async Task SvgBuildTaskRendersTheFile()
         {
             var path = await SvgUtilities.CreateTempImage();
-            var output = Path.GetTempFileName();
+            var output = Path.ChangeExtension(Path.GetTempFileName(), "png");
             var task = new SvgBuildTask {InputPath = path, OutputPath = output};
             Assert.True(task.Execute());
 

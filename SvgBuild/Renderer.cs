@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Drawing;
+using System.Drawing.IconLib;
 using System.Drawing.Imaging;
 using System.IO;
 using Svg;
+using SvgBuild.Savers;
 
 namespace SvgBuild
 {
@@ -42,17 +44,28 @@ namespace SvgBuild
             }
 
             var document = SvgDocument.Open(inputPath);
+            var processor = CreateImageSaver(format);
             var size = document.GetDimensions().ToSize();
             using (var image = new Bitmap(size.Width, size.Height))
             {
                 document.Draw(image);
-                image.Save(outputPath, format);
+                processor.Save(image, format, outputPath);
             }
         }
 
         private static ImageFormat DetermineOutputFormat(string extension)
         {
             return _extensionFormats.TryGetValue(extension, out var format) ? format : null;
+        }
+
+        private static IImageSaver CreateImageSaver(ImageFormat format)
+        {
+            if (Equals(format, ImageFormat.Icon))
+            {
+                return new IconLibSaver();
+            }
+
+            return new SystemDrawingSaver();
         }
     }
 }

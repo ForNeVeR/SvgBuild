@@ -1,0 +1,7 @@
+This project uses IconLib library by CastorTiu,
+https://www.codeproject.com/Members/CastorTiu
+
+The library was originally taken from
+https://www.codeproject.com/Articles/16178/IconLib-Icons-Unfolded-MultiIcon-and-Windows-Vista
+and redistribited under the terms of CC BY-SA 3.0 license,
+https://creativecommons.org/licenses/by-sa/3.0/

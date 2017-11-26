@@ -17,6 +17,8 @@
   </metadata>
   <files>
     <file src="*.props" target="build"/>
+    <file src="IconLib-license.txt" target="tools"/>
+    <file src="bin\$configuration$\IconLib.dll" target="tools"/>
     <file src="bin\$configuration$\Svg.*" target="tools"/>
     <file src="bin\$configuration$\SvgBuild.???" target="tools"/>
     <file src="bin\$configuration$\SvgBuild.MsBuild.pdb" target="tools"/>

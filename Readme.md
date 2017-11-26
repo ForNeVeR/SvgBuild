@@ -19,8 +19,22 @@ $ msbuild /p:Configuration=Release SvgBuild.sln
 It will create the `SvgBuild.Console/bin/Release/SvgBuild.Console.exe` binary
 file.
 
-Run (Terminal)
---------------
+Usage
+-----
+
+SvgBuild basically takes two parameters: input and output path. Input path
+should lead to a valid SVG file, output path should lead to a valid place to
+save the resulting image. Output image format will be determined by the output
+file extension. The supported file extensions are:
+
+- `.bmp`
+- `.gif`
+- `.ico`
+- `.jpeg`, `.jpg`
+- `.png`
+- `.tiff`  
+
+### From Terminal
 
 On Windows:
 
@@ -34,8 +48,7 @@ On other operating systems:
 $ mono SvgBuild.Console <path to the input file> <path to the output file>
 ```
 
-Run (MSBuild)
--------------
+### From MSBuild
 
 Install `SvgBuild.MsBuild` package into your project. Your NuGet client should
 automatically generate the following in your project file:
