@@ -2,7 +2,8 @@ SvgBuild [![NuGet][badge-nuget]][nuget] [![Appveyor Build][badge-appveyor]][buil
 ========
 
 This is a .NET based tool set to save SVG to raster images. Includes a
-terminal-based program and a MSBuild task.
+terminal-based program and a MSBuild task. It is compatible with .NET Framework
+4.6.1 and Mono.
 
 Build
 -----
