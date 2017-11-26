@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Drawing;
+using System.Globalization;
 
 namespace SvgBuild.MsBuild
 {
@@ -6,18 +8,32 @@ namespace SvgBuild.MsBuild
     {
         public string InputPath { get; set; }
         public string OutputPath { get; set; }
-        public int? Width { get; set; }
-        public int? Height { get; set; }
+        public string Width { get; set; }
+        public string Height { get; set; }
 
         public override bool Execute()
         {
-            if (Width.HasValue != Height.HasValue)
+            if (string.IsNullOrWhiteSpace(Width) != string.IsNullOrWhiteSpace(Height))
             {
                 throw new ArgumentException("Width and Height should both be defined");
             }
 
+            var size = ParseSize();
+
             Renderer.Render(InputPath, OutputPath);
             return true;
+        }
+
+        private Size? ParseSize()
+        {
+            if (string.IsNullOrWhiteSpace(Width) || string.IsNullOrWhiteSpace(Height))
+            {
+                return null;
+            }
+
+            var width = int.Parse(Width.Trim(), CultureInfo.InvariantCulture);
+            var height = int.Parse(Height.Trim(), CultureInfo.InvariantCulture);
+            return new Size(width, height);
         }
     }
 }
