@@ -108,5 +108,5 @@ $ nuget pack SvgBuild.MsBuild/SvgBuild.MsBuild.csproj -Tool -Prop Platform=AnyCP
 [visual-studio]: https://www.visualstudio.com/
 
 [badge-appveyor]: https://ci.appveyor.com/api/projects/status/mwpd81tb2nwku1k6/branch/master?svg=true
-[badge-nuget]: https://img.shields.io/nuget/dt/SvgBuild.MsBuild.svg
+[badge-nuget]: https://img.shields.io/nuget/v/SvgBuild.MsBuild.svg
 [badge-travis]: https://travis-ci.org/ForNeVeR/SvgBuild.svg?branch=master
