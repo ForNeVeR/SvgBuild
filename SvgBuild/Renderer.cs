@@ -21,7 +21,7 @@ namespace SvgBuild
             [".tiff"] = ImageFormat.Tiff,
         };
 
-        public static void Render(string inputPath, string outputPath)
+        public static void Render(string inputPath, string outputPath, Size? size = null)
         {
             if (inputPath == null)
             {
@@ -43,8 +43,8 @@ namespace SvgBuild
 
             var document = SvgDocument.Open(inputPath);
             var processor = CreateImageSaver(format);
-            var size = document.GetDimensions().ToSize();
-            using (var image = new Bitmap(size.Width, size.Height))
+            var bitmapSize = size ?? Size.Ceiling(document.GetDimensions());
+            using (var image = new Bitmap(bitmapSize.Width, bitmapSize.Height))
             {
                 document.Draw(image);
                 processor.Save(image, format, outputPath);

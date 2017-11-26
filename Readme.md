@@ -34,12 +34,15 @@ file extension. The supported file extensions are:
 - `.png`
 - `.tiff`  
 
+The image will be rescaled to the new size, if specified. Otherwise, the size
+of the original document will be used.
+
 ### From Terminal
 
 On Windows:
 
 ```console
-$ SvgBuild.Console <path to the input file> <path to the output file>
+$ SvgBuild.Console <path to the input file> <path to the output file> [<width>x<height>]
 ```
 
 On other operating systems:
@@ -64,7 +67,9 @@ target:
 ```xml
 <Target Name="SvgBuildTasks" AfterTargets="AfterBuild">
   <SvgBuildTask InputPath="$(ProjectDir)..\SvgBuild.Tests\Resources\Image.svg"
-                OutputPath="$(OutDir)Test.bmp" />
+                OutputPath="$(OutDir)Test.bmp"
+                Width="30"
+                Height="60" /> <!-- Width and Height are optional --> 
 </Target>
 ```
 

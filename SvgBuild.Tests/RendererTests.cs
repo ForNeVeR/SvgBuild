@@ -24,6 +24,18 @@ namespace SvgBuild.Tests
         }
 
         [Fact]
+        public async Task SavedImageHasRequiredSize()
+        {
+            var input = await SvgUtilities.CreateTempImage();
+            var output = Path.ChangeExtension(Path.GetTempFileName(), "png");
+            var size = new Size(32, 32);
+            Renderer.Render(input, output, size);
+
+            var image = Image.FromFile(output);
+            Assert.Equal(size, image.Size);
+        }
+
+        [Fact]
         public Task RendererCreatesBmpImage() => AssertRenderedImageFormat("bmp", ImageFormat.Bmp);
 
         [Fact]

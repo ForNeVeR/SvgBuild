@@ -48,6 +48,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="SvgBuildTasks" AfterTargets="AfterBuild">
     <SvgBuildTask InputPath="$(ProjectDir)..\SvgBuild.Tests\Resources\Image.svg" OutputPath="$(OutDir)Test.bmp" />
-    <SvgBuildTask InputPath="$(ProjectDir)..\SvgBuild.Tests\Resources\Image.svg" OutputPath="$(OutDir)Test.ico" />
+    <SvgBuildTask InputPath="$(ProjectDir)..\SvgBuild.Tests\Resources\Image.svg" OutputPath="$(OutDir)Test.ico"
+                  Width="30" Height="60" />
   </Target>
 </Project>
