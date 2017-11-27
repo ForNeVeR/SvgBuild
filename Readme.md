@@ -49,7 +49,7 @@ $ SvgBuild.Console <path to the input file> <path to the output file> [<width>x<
 On other operating systems:
 
 ```console
-$ mono SvgBuild.Console <path to the input file> <path to the output file> [<width>x<height>]
+$ mono SvgBuild.Console.exe <path to the input file> <path to the output file> [<width>x<height>]
 ```
 
 ### From MSBuild
