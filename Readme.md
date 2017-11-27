@@ -23,10 +23,10 @@ file.
 Usage
 -----
 
-SvgBuild basically takes two parameters: input and output path. Input path
-should lead to a valid SVG file, output path should lead to a valid place to
-save the resulting image. Output image format will be determined by the output
-file extension. The supported file extensions are:
+SvgBuild basically takes two required parameters: input and output path. Input
+path should lead to a valid SVG file, output path should lead to a valid place
+to save the resulting image. Output image format will be determined by the
+output file extension. The supported file extensions are:
 
 - `.bmp`
 - `.gif`
@@ -36,7 +36,7 @@ file extension. The supported file extensions are:
 - `.tiff`  
 
 The image will be rescaled to the new size, if specified. Otherwise, the size
-of the original document will be used.
+of the original document will be preserved.
 
 ### From Terminal
 
@@ -49,7 +49,7 @@ $ SvgBuild.Console <path to the input file> <path to the output file> [<width>x<
 On other operating systems:
 
 ```console
-$ mono SvgBuild.Console <path to the input file> <path to the output file>
+$ mono SvgBuild.Console <path to the input file> <path to the output file> [<width>x<height>]
 ```
 
 ### From MSBuild
