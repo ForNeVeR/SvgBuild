@@ -20,7 +20,7 @@ namespace SvgBuild.MsBuild
 
             var size = ParseSize();
 
-            Renderer.Render(InputPath, OutputPath);
+            Renderer.Render(InputPath, OutputPath, size);
             return true;
         }
 
