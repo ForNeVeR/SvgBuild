@@ -33,7 +33,7 @@ output file extension. The supported file extensions are:
 - `.ico`
 - `.jpeg`, `.jpg`
 - `.png`
-- `.tiff`  
+- `.tiff`
 
 The image will be rescaled to the new size, if specified. Otherwise, the size
 of the original document will be preserved.
@@ -70,7 +70,7 @@ target:
   <SvgBuildTask InputPath="$(ProjectDir)..\SvgBuild.Tests\Resources\Image.svg"
                 OutputPath="$(OutDir)Test.bmp"
                 Width="30"
-                Height="60" /> <!-- Width and Height are optional --> 
+                Height="60" /> <!-- Width and Height are optional -->
 </Target>
 ```
 
@@ -92,7 +92,7 @@ $ mono packages/xunit.runner.console.2.3.1/tools/net452/xunit.console.exe SvgBui
 Pack
 ----
 
-To pack the project before uploading it to NuGet, use the following command:
+To pack the project before uploading it to NuGet, use the following commands:
 
 ```console
 $ nuget restore
