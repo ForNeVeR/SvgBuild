@@ -41,6 +41,12 @@ namespace SvgBuild
                     nameof(outputPath));
             }
 
+            var outputDirectory = Path.GetDirectoryName(Path.GetFullPath(outputPath));
+            if (!Directory.Exists(outputDirectory))
+            {
+                Directory.CreateDirectory(outputDirectory);
+            }
+
             var document = SvgDocument.Open(inputPath);
             var processor = CreateImageSaver(format);
             var bitmapSize = size ?? Size.Ceiling(document.GetDimensions());

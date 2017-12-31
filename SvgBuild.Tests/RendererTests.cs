@@ -66,6 +66,17 @@ namespace SvgBuild.Tests
         [Fact]
         public Task RendererCreatesTiffImage() => AssertRenderedImageFormat("tiff", ImageFormat.Tiff);
 
+        [Fact]
+        public async Task RendererCreatesNecessaryDirectories()
+        {
+            var input = await SvgUtilities.CreateTempImage();
+            var output = Path.Combine(
+                Path.GetDirectoryName(input),
+                Guid.NewGuid().ToString(),
+                Path.ChangeExtension(Path.GetFileNameWithoutExtension(input), ".png"));
+            Renderer.Render(input, output);
+        }
+
         private async Task AssertRenderedImageFormat(string outputFileExtension, ImageFormat format)
         {
             var input = await SvgUtilities.CreateTempImage();
