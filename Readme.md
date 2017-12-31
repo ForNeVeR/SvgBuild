@@ -58,8 +58,8 @@ Install `SvgBuild.MsBuild` package into your project. Your NuGet client should
 automatically generate the following in your project file:
 
 ```xml
-<Import Project="..\packages\SvgBuild.MsBuild.0.0.1\build\SvgBuild.MsBuild.props"
-        Condition="Exists('..\packages\SvgBuild.MsBuild.0.0.1\build\SvgBuild.MsBuild.props')" />
+<Import Project="..\packages\SvgBuild.MsBuild.1.0.0\build\SvgBuild.MsBuild.props"
+        Condition="Exists('..\packages\SvgBuild.MsBuild.1.0.0\build\SvgBuild.MsBuild.props')" />
 ```
 
 After that, you're able to run SVG processing tasks e.g. in the `AfterBuild`

@@ -16,7 +16,7 @@ script:
     # Install the package:
     - cd SvgBuild.MsBuild.IntegrationTest
     - mkdir NuGetRepository
-    - mono ../.nuget/nuget.exe add ../SvgBuild.MsBuild.0.0.1.nupkg -Source NuGetRepository
+    - mono ../.nuget/nuget.exe add ../SvgBuild.MsBuild.1.0.0.nupkg -Source NuGetRepository
     - mono ../.nuget/nuget.exe restore -Source $PWD/NuGetRepository -PackagesDirectory packages
     # Check if the build works now:
     - msbuild /p:Platform=AnyCPU /p:Configuration=Release

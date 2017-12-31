@@ -12,7 +12,7 @@ after_build:
     # Install the package:
     - cd SvgBuild.MsBuild.IntegrationTest
     - mkdir NuGetRepository
-    - nuget add ..\SvgBuild.MsBuild.0.0.1.nupkg -Source NuGetRepository
+    - nuget add ..\SvgBuild.MsBuild.1.0.0.nupkg -Source NuGetRepository
     - nuget restore -Source %cd%\NuGetRepository -PackagesDirectory packages
     # Check if the build works now:
     - msbuild /p:Platform=AnyCPU /p:Configuration=Release
