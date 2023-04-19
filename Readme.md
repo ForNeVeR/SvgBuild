@@ -74,19 +74,26 @@ target:
 </Target>
 ```
 
-Test
-----
+Unit Tests
+----------
 
 On Windows:
 
 ```console
-$ packages\xunit.runner.console.2.3.1\tools\net452\xunit.console.exe SvgBuild.Tests\bin\Release\SvgBuild.Tests.dll
+$ dotnet test
 ```
 
 On other operating systems:
 
 ```console
-$ mono packages/xunit.runner.console.2.3.1/tools/net452/xunit.console.exe SvgBuild.Tests/bin/Release/SvgBuild.Tests.dll
+$ mono ~/.nuget/xunit.runner.console.2.3.1/tools/net452/xunit.console.exe SvgBuild.Tests/bin/Release/SvgBuild.Tests.dll
+```
+
+Integration Tests
+-----------------
+
+```console
+$ pwsh ./SvgBuild.Tests.Integration/Run-IntegrationTests.ps1
 ```
 
 Pack
