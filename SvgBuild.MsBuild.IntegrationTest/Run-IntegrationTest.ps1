@@ -14,7 +14,7 @@ Push-Location $SourceRoot/SvgBuild.MsBuild.IntegrationTest
 try
 {
     New-Item -Type Directory NuGetRepository
-    nuget add ..\SvgBuild.MsBuild.1.0.0.nupkg -Source $(Resolve-Path NuGetRepository)
+    nuget add ../SvgBuild.MsBuild.1.0.0.nupkg -Source $(Resolve-Path NuGetRepository)
     if (!$?) { throw "Error from nuget add: $LASTEXITCODE." }
 
     nuget restore -Source $(Resolve-Path NuGetRepository) -PackagesDirectory packages
@@ -23,8 +23,8 @@ try
     msbuild /p:Platform=AnyCPU /p:Configuration=Release
     if (!$?) { throw "Error from msbuild: $LASTEXITCODE." }
 
-    if (!(Test-Path -Type Leaf bin\Release\Test.bmp)) { throw "File not found: bin\Release\Test.bmp" }
-    if (!(Test-Path -Type Leaf bin\Release\Test.ico)) { throw "File not found: bin\Release\Test.ico" }
+    if (!(Test-Path -Type Leaf bin/Release/Test.bmp)) { throw "File not found: bin\Release\Test.bmp" }
+    if (!(Test-Path -Type Leaf bin/Release/Test.ico)) { throw "File not found: bin\Release\Test.ico" }
 }
 finally
 {
