@@ -1,12 +1,7 @@
 {
   "profiles": {
     "SvgBuild.Console": {
-      "commandName": "Project",
-      "launchBrowser": true,
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      },
-      "applicationUrl": "http://localhost:3883"
+      "commandName": "Project"
     }
   }
 }
