@@ -12,6 +12,8 @@ on:
 jobs:
   main-windows:
     runs-on: windows-2019
+    env:
+      NUGET_ENABLE_LEGACY_CSPROJ_PACK: "true"
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -34,6 +36,8 @@ jobs:
 
   main-linux:
     runs-on: ubuntu-latest
+    env:
+      NUGET_ENABLE_LEGACY_CSPROJ_PACK: "true"
     steps:
       - name: Checkout
         uses: actions/checkout@v2
