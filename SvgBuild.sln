@@ -22,6 +22,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 		Readme.md = Readme.md
+		.gitignore = .gitignore
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SvgBuild.MsBuild.IntegrationTest", "SvgBuild.MsBuild.IntegrationTest", "{76094179-AC23-4B14-A711-984842122BAB}"
@@ -66,7 +67,7 @@ Global
 		{5135CDDC-8614-424B-8873-0F6E558B2940} = {F85DCE90-B666-4241-98C9-40901A33E2B6}
 		{A5E9E81A-4B70-4206-8180-F98C8D459E55} = {76094179-AC23-4B14-A711-984842122BAB}
 	EndGlobalSection
-    GlobalSection(ExtensibilityGlobals) = postSolution
-        SolutionGuid = {0C613B42-FCB8-4DB0-ADD0-E5221416D39F}
-    EndGlobalSection
+				GlobalSection(ExtensibilityGlobals) = postSolution
+								SolutionGuid = {0C613B42-FCB8-4DB0-ADD0-E5221416D39F}
+				EndGlobalSection
 EndGlobal

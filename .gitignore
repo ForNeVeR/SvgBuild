@@ -1,7 +1,7 @@
 /.idea/
-/packages/
+/.vs/
 
 bin/
 obj/
-/.vs/
+
 *.nupkg
