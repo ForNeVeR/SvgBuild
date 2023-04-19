@@ -1,4 +1,4 @@
-SvgBuild [![NuGet][badge-nuget]][nuget] [![Appveyor Build][badge-appveyor]][build-appveyor] [![Travis Build][badge-travis]][build-travis]
+SvgBuild [![NuGet][badge-nuget]][nuget] [![Travis Build][badge-travis]][build-travis]
 ========
 
 This is a .NET based tool set to save SVG to raster images. Includes a
@@ -100,13 +100,11 @@ $ msbuild /p:Configuration=Release SvgBuild.sln
 $ nuget pack SvgBuild.MsBuild/SvgBuild.MsBuild.csproj -Tool -Prop Platform=AnyCPU -Prop Configuration=Release
 ```
 
-[build-appveyor]: https://ci.appveyor.com/project/ForNeVeR/svgbuild/branch/master
 [build-travis]: https://travis-ci.org/ForNeVeR/SvgBuild
 [mono]: http://www.mono-project.com/
 [msbuild]: https://github.com/Microsoft/msbuild
 [nuget]: https://www.nuget.org/packages/SvgBuild.MsBuild
 [visual-studio]: https://www.visualstudio.com/
 
-[badge-appveyor]: https://ci.appveyor.com/api/projects/status/mwpd81tb2nwku1k6/branch/master?svg=true
 [badge-nuget]: https://img.shields.io/nuget/v/SvgBuild.MsBuild.svg
 [badge-travis]: https://travis-ci.org/ForNeVeR/SvgBuild.svg?branch=master

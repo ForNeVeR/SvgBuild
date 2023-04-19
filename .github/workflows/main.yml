@@ -1,0 +1,37 @@
+﻿name: Main
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+  schedule:
+    - cron: '0 0 * * 6'
+
+jobs:
+  main-windows:
+    runs-on: windows-2019
+    env:
+      DOTNET_NOLOGO: 1
+      DOTNET_CLI_TELEMETRY_OPTOUT: 1
+      NUGET_PACKAGES: ${{ github.workspace }}/.github/nuget-packages
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: NuGet restore
+        run: nuget restore
+
+      - name: Discover MSBuild
+        uses: microsoft/setup-msbuild@v1.1
+
+      - name: Build
+        run: msbuild /p:Configuration=Release SvgBuild.sln
+
+      - name: Test
+        run: packages\xunit.runner.console.2.3.1\tools\net452\xunit.console.exe SvgBuild.Tests\bin\Release\SvgBuild.Tests.dll
+
+      - name: Integration test
+        shell: pwsh
+        run: SvgBuild.MsBuild.IntegrationTest\Run-IntegrationTest.ps1
