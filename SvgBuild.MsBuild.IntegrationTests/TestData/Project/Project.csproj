@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+
+  <Target Name="SvgBuildTasks" AfterTargets="AfterBuild">
+    <SvgBuildTask InputPath="$(ProjectDir)..\Resources\Image.svg" OutputPath="$(OutDir)Test.bmp" />
+    <SvgBuildTask InputPath="$(ProjectDir)..\Resources\Image.svg" OutputPath="$(OutDir)Test.ico"
+                  Width="30" Height="60" />
+  </Target>
+</Project>

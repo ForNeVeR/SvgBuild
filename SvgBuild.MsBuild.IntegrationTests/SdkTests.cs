@@ -10,8 +10,8 @@ public class SdkTests : SdkTestBase
     }
 
     [Fact]
-    public Task FrankenprojBuildsCorrectly() => AssertBuildSuccess(
-        "Frankenproj/Frankenproj.csproj",
-        "Frankenproj/bin/Release/Test.bmp",
-        "Frankenproj/bin/Release/Test.ico");
+    public Task ProjectBuildsCorrectly() => AssertBuildSuccess(
+        "Project/Project.csproj",
+        "Project/bin/Release/Test.bmp",
+        "Project/bin/Release/Test.ico");
 }

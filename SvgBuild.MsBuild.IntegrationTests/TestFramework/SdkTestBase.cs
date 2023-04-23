@@ -1,5 +1,4 @@
 ﻿using System.Reflection;
-using System.Runtime.InteropServices;
 using Medallion.Shell;
 using Xunit.Abstractions;
 
@@ -10,10 +9,12 @@ public abstract class SdkTestBase
     private readonly ITestOutputHelper _output;
     private readonly string _sourceRoot;
     private readonly string _temporaryPath = Path.GetTempFileName();
+    private readonly string _nuGetPackages;
 
     protected SdkTestBase(ITestOutputHelper output)
     {
         _output = output;
+        _nuGetPackages = Path.Combine(_temporaryPath, "NuGetPackages");
 
         File.Delete(_temporaryPath);
 
@@ -55,7 +56,7 @@ public abstract class SdkTestBase
 
     private string GetTestDataPath(string relativePath) => Path.Combine(_temporaryPath, relativePath);
 
-    private async Task EnsureCommandSuccess(string executable, string? workingDirectory, string[] arguments, Dictionary<string, string>? environment = null)
+    private async Task EnsureCommandSuccess(string executable, string? workingDirectory, string[] arguments)
     {
         var commandText = $"{executable} {string.Join(" ", arguments)}";
         _output.WriteLine($"# Executing command \"{commandText}\"");
@@ -64,8 +65,7 @@ public abstract class SdkTestBase
         {
             if (workingDirectory != null)
                 options.WorkingDirectory(workingDirectory);
-            if (environment != null)
-                options.EnvironmentVariables(environment);
+            options.EnvironmentVariable("NUGET_PACKAGES", _nuGetPackages);
         });
         var result = await command.Task;
         if (!result.Success)
@@ -82,35 +82,13 @@ public abstract class SdkTestBase
 
     private async Task<string> PackMsBuildPackage()
     {
-        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-        {
-            await EnsureCommandSuccess("dotnet", _sourceRoot, new[]
-            {
-                "build",
-                "-c", "Release"
-            });
-        }
-        else
-        {
-            await EnsureCommandSuccess(FindMsBuildExecutable(), _sourceRoot, new[]
-            {
-                "/p:Configuration=Release",
-                "SvgBuild.sln"
-            });
-        }
-
-        await EnsureCommandSuccess("nuget", _temporaryPath, new[]
+        await EnsureCommandSuccess("dotnet", _sourceRoot, new[]
         {
             "pack",
-            Path.Combine(_sourceRoot, "SvgBuild.MsBuild/SvgBuild.MsBuild.csproj"),
-            "-Tool",
-            "-Prop", "Platform=AnyCPU",
-            "-Prop", "Configuration=Release"
-        }, new Dictionary<string, string>
-        {
-            ["NUGET_ENABLE_LEGACY_CSPROJ_PACK"] = "true"
+            "--version-suffix", "test",
+            "--output", _temporaryPath
         });
-        return Path.Combine(_temporaryPath, "SvgBuild.MsBuild.1.0.0.nupkg");
+        return Directory.EnumerateFiles(_temporaryPath, "*.nupkg").Single();
     }
 
     private static string CreateTempRepository()
@@ -121,72 +99,36 @@ public abstract class SdkTestBase
         return path;
     }
 
-    private static string FindMsBuildExecutable()
-    {
-        const string executableName = "msbuild";
-        var pathsToSearch = Environment.GetEnvironmentVariable("PATH")!.Split(Path.PathSeparator);
-        var extensions = RuntimeInformation.IsOSPlatform(OSPlatform.Windows)
-            ? Environment.GetEnvironmentVariable("PATHEXT")!.Split(Path.PathSeparator)
-            : null;
-        foreach (var directory in pathsToSearch)
-        {
-            foreach (var extension in extensions ?? Array.Empty<string>())
-            {
-                var path = Path.Combine(directory, executableName + extension);
-                if (File.Exists(path)) return path;
-            }
-        }
-
-        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-        {
-            var programFiles = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
-            var msBuildPath = Path.Combine(
-                programFiles,
-                "Microsoft Visual Studio",
-                "2022",
-                "Professional",
-                "Msbuild",
-                "Current",
-                "Bin",
-                "amd64",
-                "MSBuild.exe");
-            if (File.Exists(msBuildPath)) return msBuildPath;
-        }
-
-        throw new Exception("Cannot find msbuild executable.");
-    }
-
     private async Task BuildProject(string projectFilePath)
     {
         var projectDirectory = Path.GetDirectoryName(projectFilePath)!;
         await EnsureCommandSuccess(
-            FindMsBuildExecutable(),
+            "dotnet",
             projectDirectory,
-            new[] { "/p:Platform=AnyCPU", "/p:Configuration=Release" });
+            new[] { "build", "--no-restore", "-p:Configuration=Release" });
     }
 
-    private async Task AddPackageToRepository(string package, string repository)
+    private async Task PushPackageToRepository(string nupkg, string repository)
     {
-        await EnsureCommandSuccess("nuget", null, new[]
+        await EnsureCommandSuccess("dotnet", null, new[]
         {
-            "add",
-            package,
-            "-Source", repository
+            "nuget", "push",
+            nupkg,
+            "--source", repository
         });
     }
 
-    private Task RestorePackages(string projectFilePath, string repository)
+    private async Task AddPackageToProject(string projectFilePath, string repository)
     {
-        var projectDirectory = Path.GetDirectoryName(projectFilePath)!;
-        return EnsureCommandSuccess(
-            "nuget",
-            projectDirectory,
-            new[]
-            {
-                "restore", projectFilePath,
-                "-Source", repository,
-                "-PackagesDirectory", "packages"
-            });
+        await EnsureCommandSuccess("dotnet", null, new[]
+        {
+            "add",
+            projectFilePath,
+            "package",
+            "SvgBuild.MsBuild",
+            "--source", repository,
+            "--prerelease"
+        });
     }
 
     protected async Task AssertBuildSuccess(string projectRelativePath, params string[] outputFileRelativePaths)
@@ -195,8 +137,8 @@ public abstract class SdkTestBase
 
         var nupkg = await PackMsBuildPackage();
         var repository = CreateTempRepository();
-        await AddPackageToRepository(nupkg, repository);
-        await RestorePackages(projectFilePath, repository);
+        await PushPackageToRepository(nupkg, repository);
+        await AddPackageToProject(projectFilePath, repository);
 
         foreach (var outputFileRelativePath in outputFileRelativePaths)
         {
