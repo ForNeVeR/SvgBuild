@@ -5,6 +5,7 @@
     <OutputType>Exe</OutputType>
     <Copyright>Copyright (C) 2017 F. von Never</Copyright>
     <Version>1.0.0</Version>
+    <IsPackable>false</IsPackable>
   </PropertyGroup>
 
   <ItemGroup>

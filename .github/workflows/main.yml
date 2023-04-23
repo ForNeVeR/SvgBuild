@@ -11,48 +11,32 @@ on:
 
 jobs:
   main-windows:
-    runs-on: windows-2019
+    strategy:
+      matrix:
+        include:
+          - os: windows-latest
+          - os: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+
     env:
-      NUGET_ENABLE_LEGACY_CSPROJ_PACK: "true"
       NUGET_PACKAGES: ${{ github.workspace }}/.github/nuget-packages
     steps:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: NuGet restore
-        run: nuget restore
+      - name: Cache NuGet packages
+        uses: actions/cache@v2
+        with:
+          path: ${{ env.NUGET_PACKAGES }}
+          key: ${{ runner.os }}.nuget.${{ hashFiles('**/*.csproj') }}
 
-      - name: Discover MSBuild
-        uses: microsoft/setup-msbuild@v1.1
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 7.0.*
 
       - name: Build
-        run: msbuild /p:Configuration=Release SvgBuild.sln
+        run: dotnet build
 
       - name: Test
         run: dotnet test
-
-      - name: Integration test
-        shell: pwsh
-        run: SvgBuild.MsBuild.IntegrationTest\Run-IntegrationTest.ps1
-
-  main-linux:
-    runs-on: ubuntu-latest
-    env:
-      NUGET_ENABLE_LEGACY_CSPROJ_PACK: "true"
-      NUGET_PACKAGES: ${{ github.workspace }}/.github/nuget-packages
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: NuGet restore
-        run: nuget restore
-
-      - name: Build
-        run: msbuild /p:Configuration=Release SvgBuild.sln
-
-      - name: Test
-        run: mono ${{ github.workspace }}/.github/nuget-packages/xunit.runner.console/2.3.1/tools/net452/xunit.console.exe SvgBuild.Tests/bin/Release/net461/SvgBuild.Tests.dll
-
-      - name: Integration test
-        shell: pwsh
-        run: SvgBuild.MsBuild.IntegrationTest/Run-IntegrationTest.ps1
