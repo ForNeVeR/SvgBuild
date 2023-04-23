@@ -82,11 +82,23 @@ public abstract class SdkTestBase
 
     private async Task<string> PackMsBuildPackage()
     {
-        await EnsureCommandSuccess("dotnet", _sourceRoot, new[]
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
         {
-            "build",
-            "-c", "Release"
-        });
+            await EnsureCommandSuccess("dotnet", _sourceRoot, new[]
+            {
+                "build",
+                "-c", "Release"
+            });
+        }
+        else
+        {
+            await EnsureCommandSuccess(FindMsBuildExecutable(), _sourceRoot, new[]
+            {
+                "/p:Configuration=Release",
+                "SvgBuild.sln"
+            });
+        }
+
         await EnsureCommandSuccess("nuget", _temporaryPath, new[]
         {
             "pack",
