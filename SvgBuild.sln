@@ -25,17 +25,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.gitignore = .gitignore
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SvgBuild.MsBuild.IntegrationTest", "SvgBuild.MsBuild.IntegrationTest", "{76094179-AC23-4B14-A711-984842122BAB}"
-	ProjectSection(SolutionItems) = preProject
-		SvgBuild.MsBuild.IntegrationTest\packages.config = SvgBuild.MsBuild.IntegrationTest\packages.config
-		SvgBuild.MsBuild.IntegrationTest\Run-IntegrationTest.ps1 = SvgBuild.MsBuild.IntegrationTest\Run-IntegrationTest.ps1
-		SvgBuild.MsBuild.IntegrationTest\SvgBuild.MsBuild.IntegrationTest.csproj = SvgBuild.MsBuild.IntegrationTest\SvgBuild.MsBuild.IntegrationTest.csproj
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Properties", "Properties", "{A5E9E81A-4B70-4206-8180-F98C8D459E55}"
-	ProjectSection(SolutionItems) = preProject
-		SvgBuild.MsBuild.IntegrationTest\Properties\AssemblyInfo.cs = SvgBuild.MsBuild.IntegrationTest\Properties\AssemblyInfo.cs
-	EndProjectSection
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SvgBuild.MsBuild.IntegrationTests", "SvgBuild.MsBuild.IntegrationTests\SvgBuild.MsBuild.IntegrationTests.csproj", "{046A8289-4497-49D8-A95C-04CDFFD83C27}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,13 +49,16 @@ Global
 		{A5082FDD-8A74-4E24-AD1E-F489D958993A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A5082FDD-8A74-4E24-AD1E-F489D958993A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A5082FDD-8A74-4E24-AD1E-F489D958993A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{046A8289-4497-49D8-A95C-04CDFFD83C27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{046A8289-4497-49D8-A95C-04CDFFD83C27}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{046A8289-4497-49D8-A95C-04CDFFD83C27}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{046A8289-4497-49D8-A95C-04CDFFD83C27}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{5135CDDC-8614-424B-8873-0F6E558B2940} = {F85DCE90-B666-4241-98C9-40901A33E2B6}
-		{A5E9E81A-4B70-4206-8180-F98C8D459E55} = {76094179-AC23-4B14-A711-984842122BAB}
 	EndGlobalSection
 				GlobalSection(ExtensibilityGlobals) = postSolution
 								SolutionGuid = {0C613B42-FCB8-4DB0-ADD0-E5221416D39F}

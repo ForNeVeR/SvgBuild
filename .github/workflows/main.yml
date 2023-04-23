@@ -31,10 +31,6 @@ jobs:
       - name: Test
         run: dotnet test
 
-      - name: Integration test
-        shell: pwsh
-        run: SvgBuild.MsBuild.IntegrationTest\Run-IntegrationTest.ps1
-
   main-linux:
     runs-on: ubuntu-latest
     env:
@@ -52,7 +48,3 @@ jobs:
 
       - name: Test
         run: mono ${{ github.workspace }}/.github/nuget-packages/xunit.runner.console/2.3.1/tools/net452/xunit.console.exe SvgBuild.Tests/bin/Release/net461/SvgBuild.Tests.dll
-
-      - name: Integration test
-        shell: pwsh
-        run: SvgBuild.MsBuild.IntegrationTest/Run-IntegrationTest.ps1
