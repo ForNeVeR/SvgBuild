@@ -2,8 +2,8 @@
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
-using System.Reflection;
 using System.Threading.Tasks;
+using SkiaSharp;
 using Xunit;
 
 namespace SvgBuild.Tests
@@ -11,14 +11,14 @@ namespace SvgBuild.Tests
     public class RendererTests
     {
         [Fact]
-        public void RendererThorwsArgumentNullExceptionIfInputOrOutputIsNull()
+        public void RendererThrowsArgumentNullExceptionIfInputOrOutputIsNull()
         {
             Assert.Throws<ArgumentNullException>(() => Renderer.Render(null, "xxx"));
             Assert.Throws<ArgumentNullException>(() => Renderer.Render("xxx", null));
         }
 
         [Fact]
-        public void RendererThorwsArgumentExceptionIfOutputHasInvalidFormat()
+        public void RendererThrowsArgumentExceptionIfOutputHasInvalidFormat()
         {
             Assert.Throws<ArgumentException>(() => Renderer.Render("file.svg", "file.txt"));
         }
@@ -28,11 +28,11 @@ namespace SvgBuild.Tests
         {
             var input = await SvgUtilities.CreateTempImage();
             var output = Path.ChangeExtension(Path.GetTempFileName(), "png");
-            var size = new Size(32, 32);
+            var size = new SKSize(32, 32);
             Renderer.Render(input, output, size);
 
             var image = Image.FromFile(output);
-            Assert.Equal(size, image.Size);
+            Assert.Equal((size.Width, size.Width), (image.Size.Width, image.Size.Height));
         }
 
         [Fact]
@@ -64,16 +64,13 @@ namespace SvgBuild.Tests
         public Task RendererCreatesPngImage() => AssertRenderedImageFormat("png", ImageFormat.Png);
 
         [Fact]
-        public Task RendererCreatesTiffImage() => AssertRenderedImageFormat("tiff", ImageFormat.Tiff);
-
-        [Fact]
         public async Task RendererCreatesNecessaryDirectories()
         {
             var input = await SvgUtilities.CreateTempImage();
             var output = Path.Combine(
-                Path.GetDirectoryName(input),
+                Path.GetDirectoryName(input)!,
                 Guid.NewGuid().ToString(),
-                Path.ChangeExtension(Path.GetFileNameWithoutExtension(input), ".png"));
+                Path.ChangeExtension(Path.GetFileNameWithoutExtension(input), ".png")!);
             Renderer.Render(input, output);
         }
 

@@ -30,7 +30,6 @@ output file extension. The supported file extensions are:
 - `.ico`
 - `.jpeg`, `.jpg`
 - `.png`
-- `.tiff`
 
 The image will be rescaled to the new size, if specified. Otherwise, the size
 of the original document will be preserved.

@@ -26,12 +26,12 @@
   <ItemGroup>
     <Content Include="SvgBuild.MsBuild.props" PackagePath="buildMultiTargeting\SvgBuild.MsBuild.props" />
     <Content Include="SvgBuild.MsBuild.props" PackagePath="build\SvgBuild.MsBuild.props" />
-    <PackageFile Include="lib\net35\Svg.dll" PackagePath="tools\Svg.dll" PackageReference="Svg" Visible="false" />
-    <PackageFile Include="lib\net35\Svg.pdb" PackagePath="tools\Svg.pdb" PackageReference="Svg" Visible="false" />
+<!--    <PackageFile Include="lib\net35\Svg.dll" PackagePath="tools\Svg.dll" PackageReference="Svg" Visible="false" />-->
+<!--    <PackageFile Include="lib\net35\Svg.pdb" PackagePath="tools\Svg.pdb" PackageReference="Svg" Visible="false" />-->
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Svg" Version="2.3.0" GeneratePathProperty="true" />
+<!--    <PackageReference Include="Svg" Version="2.3.0" GeneratePathProperty="true" />-->
     <PackageReference Include="Microsoft.Build.Utilities.Core" Version="17.0.0" />
     <ProjectReference Include="..\SvgBuild\SvgBuild.csproj" PrivateAssets="All" />
     <PackageReference Include="NuGetizer" Version="0.6.2" />

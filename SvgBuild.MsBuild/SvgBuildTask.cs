@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Drawing;
 using System.Globalization;
+using SkiaSharp;
 
 namespace SvgBuild.MsBuild
 {
@@ -24,16 +24,16 @@ namespace SvgBuild.MsBuild
             return true;
         }
 
-        private Size? ParseSize()
+        private SKSize? ParseSize()
         {
             if (string.IsNullOrWhiteSpace(Width) || string.IsNullOrWhiteSpace(Height))
             {
                 return null;
             }
 
-            var width = int.Parse(Width.Trim(), CultureInfo.InvariantCulture);
-            var height = int.Parse(Height.Trim(), CultureInfo.InvariantCulture);
-            return new Size(width, height);
+            var width = float.Parse(Width.Trim(), CultureInfo.InvariantCulture);
+            var height = float.Parse(Height.Trim(), CultureInfo.InvariantCulture);
+            return new SKSize(width, height);
         }
     }
 }

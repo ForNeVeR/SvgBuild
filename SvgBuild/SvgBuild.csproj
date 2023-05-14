@@ -1,14 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0-windows</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <Copyright>Copyright (C) 2017 F. von Never</Copyright>
     <Version>1.0.0</Version>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Svg" Version="2.3.0" />
     <PackageReference Include="NuGetizer" Version="0.6.2" />
+    <PackageReference Include="Svg.Skia" Version="0.5.18" />
   </ItemGroup>
 </Project>
